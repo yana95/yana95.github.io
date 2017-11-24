@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet"  type="text/css" href="styles.css">
 </head>
 <body>
-Hello world
+    <div class="wrapper">
+        <div class="header">
+            <h1 class="logo">NewsPortal</h1>
+            <span id="all-channels" class="all-channels">All channels</span>
+        </div>
+        <div class="main">
+            <p id="channel-name" class="channel-name"></p>
+            <ul id="categories" class="categories"></ul>
+            <ul id="articles"></ul>
+        </div>
+    </div>
+<script type="module" >
+    import {entryPoint} from './js/utils.js';
+    entryPoint();
+</script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+{
+  "name": "es2015",
+  "version": "0.0.1",
+  "scripts": {
+    "server": "http-server --core -c1 -p8181"
+  },
+  "dependencies": {
+    "http-server": "^0.10.0"
+  }
+}

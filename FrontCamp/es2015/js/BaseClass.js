@@ -3,20 +3,21 @@
  */
 
 class BaseClass {   //Using ES6 classes
-    constructor (type){
-        this.ul = document.getElementById(type);
+    constructor (parentNode){
+        this.parentNode = parentNode;
         this.items = [];
     }
-    getItems(url){
-        let promise = fetch(url);    //Using ES6 fetch
-        return promise.then((res) => res.json()); //Using ES6 promise
+    render(){
+        this.parentNode.innerHTML = '';
+        this.items.map( item => {
+            let node = document.createElement('li');
+            node.innerHTML = item.template();
+            node.setAttribute('id', item.info.id)
+            this.mountTo(node);
+        });
     }
-    renderItems(template){
-        for(let i=0; i < this.items.length; i++){
-            let li = document.createElement('li');
-            li.innerHTML = template(this.items[i]);
-            this.ul.appendChild(li);
-        }
+    mountTo(node){
+        this.parentNode.appendChild(node)
     }
 }
 

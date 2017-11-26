@@ -12,7 +12,7 @@ class BaseClass {   //Using ES6 classes
         this.items.map( item => {
             let node = document.createElement('li');
             node.innerHTML = item.template();
-            node.setAttribute('id', item.info.id)
+            item.info.id && node.setAttribute('id', item.info.id)
             this.mountTo(node);
         });
     }

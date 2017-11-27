@@ -134,7 +134,19 @@ body{
     display: table;
     clear: both;
 }
-
+.footer{
+    padding: 5px 30px;
+    background: #c7ced8;
+}
+.footer p{
+    font-family: Calibri;
+    float: right;
+    margin: 0;
+}
+.footer a{
+    color: darkblue;
+    text-decoration: none;
+}
 @media (max-width: 750px){
     .wrapper{
         width: 95%;

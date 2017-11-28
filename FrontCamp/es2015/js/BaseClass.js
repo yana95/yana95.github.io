@@ -6,14 +6,14 @@ class BaseClass {   //Using ES6 classes
     constructor (parentNode){
         this.parentNode = parentNode;
         this.items = [];
+        this.el = document.createElement('li');
     }
     render(){
         this.parentNode.innerHTML = '';
         this.items.map( item => {
-            let node = document.createElement('li');
-            node.innerHTML = item.template();
-            item.info.id && node.setAttribute('id', item.info.id)
-            this.mountTo(node);
+            item.el.innerHTML = item.template();
+            item.info.id && item.el.setAttribute('id', item.info.id)
+            this.mountTo(item.el);
         });
     }
     mountTo(node){

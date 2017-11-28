@@ -5,6 +5,7 @@ import constants from './constants.js';
 class Article{  //Using ES6 extends
     constructor ( info){
         this.info = info;
+        this.el = document.createElement('li');
     }
     template(){
         let date = new Date(this.info.publishedAt);

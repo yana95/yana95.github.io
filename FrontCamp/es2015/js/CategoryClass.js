@@ -10,6 +10,7 @@ class Category extends BaseClass {
     constructor (parentNode, info){
         super(parentNode);
         this.info = info;
+        this.el.addEventListener('click', this.clickHandler.bind(this));
     }
     template(){
         const { name, category, description } = this.info;

@@ -3,6 +3,6 @@
  */
 
 export default (url) => {
-    let promise = fetch(url);    //Using ES6 fetch
+    const promise = fetch(url);    //Using ES6 fetch
     return promise.then((res) => res.json()); //Using ES6 promise
 }

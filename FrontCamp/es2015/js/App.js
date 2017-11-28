@@ -19,19 +19,14 @@ class App extends  BaseClass{
     constructor (){
         let parentNode = document.getElementById('categories');
         super(parentNode);
+        parentNode = document.getElementById('articles');
         getItems(`${constants.CATEGORIES}?language=${constants.LANGUAGE}&country=${constants.COUNTRY}&apiKey=${constants.API_KEY}`)
-            .then( data => {
-                parentNode = document.getElementById('articles');
-                data.sources.map( item => {
-                    const category = new Category(parentNode, item);
-                    this.items.push(category);
-                });
-                this.render();
-                this.items.map( item => {
-                    document.getElementById(item.info.id).addEventListener('click', item.clickHandler.bind(item));
-                });
-            });
+            .then( data => {this.promiseHandler(data, parentNode)} );
         allChannelsHandler();
+    }
+    promiseHandler(data, parentNode){
+        this.items = data.sources.map(item => new Category(parentNode, item));
+        this.render();
     }
 }
 

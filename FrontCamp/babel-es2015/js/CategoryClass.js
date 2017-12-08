@@ -6,7 +6,7 @@ import BaseClass from './BaseClass.js';
 import constants from './constants.js';
 import getItems from './getItems.js';
 
-module.exports = class Category extends BaseClass {
+class Category extends BaseClass {
     constructor (parentNode, info){
         super(parentNode);
         this.info = info;
@@ -35,3 +35,5 @@ module.exports = class Category extends BaseClass {
             });
     }
 }
+
+export  default  Category;

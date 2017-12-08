@@ -1,6 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _CategoryClass = require('./CategoryClass.js');
@@ -41,7 +45,7 @@ var allChannelsHandler = function allChannelsHandler() {
     });
 };
 
-module.exports = function (_BaseClass) {
+var App = function (_BaseClass) {
     _inherits(App, _BaseClass);
 
     function App() {
@@ -71,8 +75,14 @@ module.exports = function (_BaseClass) {
 
     return App;
 }(_BaseClass3.default);
+
+exports.default = App;
 },{"./BaseClass.js":3,"./CategoryClass.js":4,"./constants.js":5,"./getItems.js":6}],2:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * Created by Yana_Zaitsava on 11/24/2017.
@@ -87,7 +97,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-module.exports = function () {
+var Article = function () {
     //Using ES6 extends
     function Article(info) {
         _classCallCheck(this, Article);
@@ -113,8 +123,14 @@ module.exports = function () {
 
     return Article;
 }();
+
+exports.default = Article;
 },{"./constants.js":5}],3:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -124,7 +140,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Yana_Zaitsava on 11/24/2017.
  */
 
-module.exports = function () {
+var BaseClass = function () {
     //Using ES6 classes
     function BaseClass(parentNode) {
         _classCallCheck(this, BaseClass);
@@ -155,8 +171,14 @@ module.exports = function () {
 
     return BaseClass;
 }();
+
+exports.default = BaseClass;
 },{}],4:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -187,7 +209,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
-module.exports = function (_BaseClass) {
+var Category = function (_BaseClass) {
     _inherits(Category, _BaseClass);
 
     function Category(parentNode, info) {
@@ -231,29 +253,41 @@ module.exports = function (_BaseClass) {
 
     return Category;
 }(_BaseClass3.default);
+
+exports.default = Category;
 },{"./ArticleClass.js":2,"./BaseClass.js":3,"./constants.js":5,"./getItems.js":6}],5:[function(require,module,exports){
 'use strict';
 
-module.exports = {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var options = {
     API_KEY: '4436d03d090d45e5852dba4176de1e91',
     ARTICLES: 'https://newsapi.org/v2/everything',
     CATEGORIES: 'https://newsapi.org/v2/sources',
     LANGUAGE: 'en',
     COUNTRY: 'gb'
 };
+
+exports.default = options;
 },{}],6:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * Created by Yana_Zaitsava on 11/26/2017.
  */
 
-module.exports = function (url) {
+var getItems = function getItems(url) {
   var promise = fetch(url); //Using ES6 fetch
   return promise.then(function (res) {
     return res.json();
   }); //Using ES6 promise
 };
+
+exports.default = getItems;
 },{}],7:[function(require,module,exports){
 'use strict';
 

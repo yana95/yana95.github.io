@@ -2,7 +2,7 @@
  * Created by Yana_Zaitsava on 11/24/2017.
  */
 
-module.exports = class BaseClass {   //Using ES6 classes
+class BaseClass {   //Using ES6 classes
     constructor (parentNode){
         this.parentNode = parentNode;
         this.items = [];
@@ -20,3 +20,5 @@ module.exports = class BaseClass {   //Using ES6 classes
         this.parentNode.appendChild(node)
     }
 }
+
+export default BaseClass;

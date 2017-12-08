@@ -15,7 +15,7 @@ const allChannelsHandler = () => {    //Using ES6 arrow function
     });
 }
 
-module.exports = class App extends  BaseClass{
+class App extends  BaseClass{
     constructor (){
         let parentNode = document.getElementById('categories');
         super(parentNode);
@@ -29,3 +29,5 @@ module.exports = class App extends  BaseClass{
         this.render();
     }
 }
+
+export default App;

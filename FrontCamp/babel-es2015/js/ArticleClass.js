@@ -2,7 +2,7 @@
  * Created by Yana_Zaitsava on 11/24/2017.
  */
 import constants from './constants.js';
-module.exports = class Article{  //Using ES6 extends
+class Article{  //Using ES6 extends
     constructor ( info){
         this.info = info;
         this.el = document.createElement('li');
@@ -24,3 +24,5 @@ module.exports = class Article{  //Using ES6 extends
             `
     }
 }
+
+export default Article;

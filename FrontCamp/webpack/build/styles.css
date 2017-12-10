@@ -1,0 +1,163 @@
+html {
+  padding: 0;
+  margin: 0; }
+  html body {
+    background: #f4f7ff; }
+    html body .clearfix:after {
+      content: "";
+      display: table;
+      clear: both; }
+    html body ul, html body h1 {
+      padding: 0;
+      margin: 0; }
+    html body .wrapper {
+      width: 700px;
+      margin: 0 auto;
+      background-color: white; }
+    html body .hide {
+      display: none; }
+    html body .logo {
+      font-family: "Arial Black";
+      font-size: 40px;
+      display: inline;
+      color: #f1f7ff;
+      line-height: 30px; }
+    html body .all-channels {
+      float: right;
+      font-family: Corbel;
+      line-height: 30px;
+      background: #f2f7ff;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #393d48;
+      border-radius: 3px;
+      padding: 0 8px; }
+      html body .all-channels:hover {
+        cursor: pointer;
+        background: #f2f7ffde; }
+    html body .channel-name {
+      margin: 0;
+      line-height: 40px;
+      padding: 0 20px;
+      background-color: #bfc5d6;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-family: "Arial Black"; }
+      html body .channel-name span:first-child {
+        color: #dc2116;
+        font-size: 20px; }
+      html body .channel-name span:last-child {
+        font-size: 16px;
+        color: #393d48; }
+    html body .header {
+      padding: 20px;
+      background: #393d49; }
+    html body .categories, html body .articles {
+      list-style: none;
+      overflow: hidden;
+      padding: 20px; }
+    html body .categories li {
+      width: 50%;
+      float: left;
+      box-sizing: border-box;
+      padding: 10px;
+      height: 200px;
+      margin-bottom: 20px; }
+      html body .categories li:hover {
+        box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.2);
+        cursor: pointer; }
+      html body .categories li h2 {
+        margin: 0;
+        font-family: Arial;
+        color: #393d49; }
+      html body .categories li span {
+        color: rgba(57, 61, 73, 0.45);
+        font-family: Calibri; }
+      html body .categories li p {
+        margin: 15px 0 0 0;
+        font-family: Calibri; }
+    html body .articles li {
+      margin-bottom: 20px;
+      border-bottom: 1px rgba(57, 61, 72, 0.0705882) solid;
+      padding-bottom: 20px; }
+      html body .articles li a {
+        float: right;
+        font-family: Arial;
+        text-decoration: none;
+        color: #3f669f; }
+        html body .articles li a:hover {
+          text-decoration: underline; }
+      html body .articles li h3 {
+        margin: 0;
+        font-family: Arial;
+        color: #393d49; }
+      html body .articles li .content {
+        margin-right: -10px; }
+        html body .articles li .content span {
+          color: rgba(57, 61, 73, 0.45);
+          font-family: Calibri;
+          font-size: 14px; }
+        html body .articles li .content p {
+          margin: 15px 0 0 0;
+          font-family: Calibri;
+          margin-top: 5px;
+          margin-bottom: 10px; }
+      html body .articles li .img-container {
+        padding-right: 10px;
+        width: 200px;
+        height: 100px;
+        background-image: url(no-image.png);
+        overflow: hidden;
+        float: left;
+        padding-right: 10px;
+        background-size: 100px;
+        background-repeat: no-repeat;
+        background-position: center; }
+        html body .articles li .img-container img {
+          width: 100%; }
+    html body .footer {
+      padding: 5px 30px;
+      background: #c7ced8; }
+      html body .footer p {
+        font-family: Calibri;
+        float: right;
+        margin: 0; }
+      html body .footer a {
+        color: darkblue;
+        text-decoration: none; }
+
+@media (max-width: 750px) {
+  .wrapper {
+    width: 95%; }
+  .categories li {
+    width: 100%;
+    height: auto; } }
+
+@media (max-width: 500px) {
+  .wrapper {
+    width: 100%; }
+  .logo {
+    font-size: 24px; }
+  .header, .categories {
+    padding: 10px; }
+  .header {
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; }
+  .all-channels {
+    margin-right: 20px; }
+  .main {
+    padding-top: 50px; }
+  .articles li .img-container {
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+    background-color: #eeeeee7d;
+    padding: 0;
+    margin-bottom: 10px; }
+  .channel-name span:first-child {
+    font-size: 16px; }
+  .channel-name span:last-child {
+    font-size: 14px; } }

@@ -1,0 +1,10 @@
+{
+  "name": "custom-loader",
+  "version": "0.0.1",
+  "scripts": {
+    "test-loader": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}

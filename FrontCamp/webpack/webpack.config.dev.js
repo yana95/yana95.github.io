@@ -11,14 +11,15 @@ module.exports = {
         path: path.resolve( __dirname, "dist")
     },
     devServer: {
-        contentBase: './'
+        port: 9000
     },
     devtool: 'eval',
     module: {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.scss$/,

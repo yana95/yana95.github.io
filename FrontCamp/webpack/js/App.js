@@ -1,10 +1,10 @@
 /**
  * Created by Yana_Zaitsava on 11/24/2017.
  */
-import Category from './CategoryClass.js';      //Using ES6 modules
-import BaseClass from './BaseClass.js';
-import getItems from './getItems.js';
-import constants from './constants.js';
+import Category from './CategoryClass';      //Using ES6 modules
+import BaseClass from './BaseClass';
+import getItems from './getItems';
+import constants from './constants';
 
 const allChannelsHandler = () => {    //Using ES6 arrow function
     const button = document.getElementById('all-channels');

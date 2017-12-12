@@ -1,7 +1,6 @@
 /**
  * Created by Yana_Zaitsava on 11/24/2017.
  */
-import constants from './constants.js';
 class Article{  //Using ES6 extends
     constructor ( info){
         this.info = info;

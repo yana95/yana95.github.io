@@ -1,3 +1,3 @@
 import "babel-polyfill";
-import App from './App.js';
+import App from './App';
 new App();

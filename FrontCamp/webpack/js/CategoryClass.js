@@ -1,11 +1,10 @@
 /**
  * Created by Yana_Zaitsava on 11/24/2017.
  */
-//import Article from './ArticleClass.js';
 
-import BaseClass from './BaseClass.js';
-import constants from './constants.js';
-import getItems from './getItems.js';
+import BaseClass from './BaseClass';
+import constants from './constants';
+import getItems from './getItems';
 
 class Category extends BaseClass {
     constructor (parentNode, info){

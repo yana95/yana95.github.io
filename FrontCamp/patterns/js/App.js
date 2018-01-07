@@ -1,0 +1,35 @@
+/**
+ * Created by Yana_Zaitsava on 11/24/2017.
+ */
+import Category from './CategoryClass';      //Using ES6 modules
+import BaseClass from './BaseClass';
+import getItems from './getItems';
+import constants from './constants';
+
+const allChannelsHandler = () => {    //Using ES6 arrow function
+    const button = document.getElementById('all-channels');
+    button.addEventListener('click', () => {
+        document.getElementById('categories').className = 'categories';
+        document.getElementById('articles').className = 'hide';
+        document.getElementById('channel-name').innerHTML = '';
+    });
+}
+
+function App() {
+    let parentNode = document.getElementById('categories');
+    BaseClass.call(this, parentNode);
+    parentNode = document.getElementById('articles');
+    getItems(`${constants.CATEGORIES}?language=${constants.LANGUAGE}&country=${constants.COUNTRY}&apiKey=${constants.API_KEY}`)
+        .then( data => {this.promiseHandler(data, parentNode)} );
+    allChannelsHandler();
+}
+
+App.prototype = Object.create(BaseClass.prototype);
+App.prototype.constructor = App;
+
+App.prototype.promiseHandler = function(data, parentNode){
+    this.items = data.sources.map(item => new Category(parentNode, item));
+    this.render();
+}
+
+export default App;

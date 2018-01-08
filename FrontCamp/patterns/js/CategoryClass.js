@@ -3,26 +3,24 @@
  */
 
 import BaseClass from './BaseClass';
-import constants from './constants';
-import getItems from './getItems';
 import Factory from './tmpFactory';
-import $ from './myJquery';
+import Iterator from './iterator';
+import singleton from './singletone';
+import Article from './ArticleClass';
 
-function Category(parentNode, info) {
-    BaseClass.call(this, parentNode);
-    this.info = info;
-    this.el.addEventListener('click', this.clickHandler.bind(this));
-}
-
-Category.prototype = Object.create(BaseClass.prototype);
-Category.prototype.constructor = Category;
-
-Category.prototype.template = function(){
+class Category extends BaseClass {
+    constructor (parentNode, info){
+        super(parentNode);
+        this.info = info;
+        this.el.addEventListener('click', this.clickHandler.bind(this));
+        this.cache = singleton.getInstance();
+    }
+    template(){
         const { name, category, description } = this.info;
-        let tmp = Factory('category');
+        const tmp = Factory('category');
         return tmp(name, category, description);
-    };
-Category.prototype.clickHandler = function(){
+    }
+    clickHandler(){
         import(/* webpackChunkName: "ArticleClass" */
             /* webpackMode: "lazy" */ './ArticleClass').then(module => {
             console.log("Lazy loading");
@@ -30,16 +28,26 @@ Category.prototype.clickHandler = function(){
             this.items = [];
             document.getElementById('categories').className = 'hide';
             document.getElementById('channel-name').innerHTML = `<span>${this.info.name}</span> <span>channel</span>`;
-            getItems(`${constants.ARTICLES}?sources=${this.info.id}&apiKey=${constants.API_KEY}`)
-                .then( data => {
-                    data.articles.map( item => {
-                        const article = new Article(item);
-                        this.items.push(article);
-                    });
-                    this.render();
-                    this.parentNode.className = 'articles';
+            let articles = this.cache.getArticles(this.info.id);
+            if( typeof articles.then == 'function'){
+                articles.then( ()=>{
+                    let articles = this.cache.getArticles(this.info.id);
+                    this.createArticles(articles);
                 });
+            } else{
+                this.createArticles(articles);
+            };
         });
-    };
+    }
+    createArticles(articles){
+        const iterator = new Iterator(articles);
+        iterator.each((item) => {
+            const article = new Article(item);
+            this.items.push(article);
+        });
+        this.render();
+        this.parentNode.className = 'articles';
+    }
+}
 
 export  default  Category;

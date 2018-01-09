@@ -13,10 +13,8 @@ function ArticlesProxy() {
                 return getItems(`${constants.ARTICLES}?sources=${id}&apiKey=${constants.API_KEY}`)
                     .then( data => {
                         cache[id] = data.articles;
-                        console.log(cache);
                     });
             } else{
-                console.log(cache);
                 return cache[id];
             }
 

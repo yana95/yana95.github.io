@@ -8,6 +8,12 @@ import constants from './constants';
 import {Observable} from './observer';
 import {Observer} from './observer';
 import Iterator from './iterator';
+import store from './singleStore';
+const state = store.getInstance();
+const render = () => {
+    document.getElementById('channel-name').innerHTML = `<span>${state.getState()}</span>`;
+}
+state.subscribe(render);
 
 const allChannelsHandler = () => {    //Using ES6 arrow function
     const button = document.getElementById('all-channels');
@@ -17,14 +23,12 @@ const allChannelsHandler = () => {    //Using ES6 arrow function
     const articles = new Observer(()=>{
         document.getElementById('articles').className = 'hide';
     });
-    const channelName = new Observer(()=>{
-        document.getElementById('channel-name').innerHTML = '';
-    });
     const allChannel = new Observable();
     allChannel.addObserver(categories);
     allChannel.addObserver(articles);
-    allChannel.addObserver(channelName);
     button.addEventListener('click', () => {
+        state.dispatch({});
+        console.log(state.getState());
         allChannel.sendMessage();
     });
 }
@@ -35,7 +39,9 @@ class App extends  BaseClass{
         super(parentNode);
         parentNode = document.getElementById('articles');
         getItems(`${constants.CATEGORIES}?language=${constants.LANGUAGE}&country=${constants.COUNTRY}&apiKey=${constants.API_KEY}`)
-            .then( data => {this.promiseHandler(data, parentNode)} );
+            .then( data => {
+                this.promiseHandler(data, parentNode)
+            });
         allChannelsHandler();
     }
     promiseHandler(data, parentNode){

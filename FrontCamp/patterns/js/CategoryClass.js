@@ -7,6 +7,9 @@ import Factory from './tmpFactory';
 import Iterator from './iterator';
 import singleton from './singletone';
 import Article from './ArticleClass';
+import store from './singleStore';
+
+let state = store.getInstance();
 
 class Category extends BaseClass {
     constructor (parentNode, info){
@@ -27,8 +30,8 @@ class Category extends BaseClass {
             const Article = module.default;
             this.items = [];
             document.getElementById('categories').className = 'hide';
-            document.getElementById('channel-name').innerHTML = `<span>${this.info.name}</span> <span>channel</span>`;
             let articles = this.cache.getArticles(this.info.id);
+            state.dispatch({type: 'OPEN_CHANNEL', name: this.info.name});
             if( typeof articles.then == 'function'){
                 articles.then( ()=>{
                     let articles = this.cache.getArticles(this.info.id);

@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.set('views', './views')
 app.set('view engine', 'pug')
 
-var router = express.Router();
+const router = express.Router();
 router.get('/blogs', function(req, res) {
     console.log('GET /blogs');
     res.json();

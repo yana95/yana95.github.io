@@ -1,0 +1,78 @@
+.add-new{
+  padding:10px 20px;
+  background: white;
+  h3{
+    font-family: Arial;
+    color: #7682a3;
+    margin: 0 0 15px 0;
+  }
+  textarea{
+    display: inline-block;
+    vertical-align: middle;
+    width: 80%;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding: 5px;
+  }
+  input{
+    width: 80%;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .invalid{
+    border: 1px solid red;
+  }
+  .controls{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    button{
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      vertical-align: middle;
+      outline: none;
+      &.add{
+        width: 15px;
+        height:7px;
+        transform: rotate(-45deg);
+        border-left: 3px solid green;
+        border-bottom: 3px solid green;
+        display: inline-block;
+        opacity: .3;
+        &:hover{
+          opacity: 1;
+        }
+      }
+      &.cancel{
+        position: relative;
+        margin-left: 5px;
+        opacity: 0.5;
+        &:before{
+          content: '';
+          display: block;
+          width: 15px;
+          height: 2px;
+          background: #ff778d;
+          transform: rotate(-45deg);
+          position: absolute;
+          top: 1px;
+          left: 6px;
+        }
+        &:after{
+          content: '';
+          display: block;
+          width: 15px;
+          height: 2px;
+          background: #ff778d;
+          transform: rotate(45deg);
+        }
+        &:hover{
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

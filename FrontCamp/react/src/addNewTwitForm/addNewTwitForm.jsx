@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import styles from './addNewTwitForm.scss';
 import date from 'date-and-time';
-import {addTwitt} from './../actions';
+import {fetchAddTwitt} from './../actions';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTwitt: (newTwitt) => dispatch(addTwitt(newTwitt))
+        fetchAddTwitt: (newTwitt) => dispatch(fetchAddTwitt(newTwitt))
     }
 };
 
@@ -28,8 +28,8 @@ class AddNewTwitForm extends React.Component {
             newTwitt.date = date.format(now, 'YYYY/MM/DD');
             newTwitt.text = text;
             newTwitt.author = author;
-            newTwitt.id = now.getTime();
-            this.props.addTwitt(newTwitt);
+            newTwitt.ID = now.getTime();
+            this.props.fetchAddTwitt(newTwitt);
             this.props.history.push('/');
         } else {
             if(!text){

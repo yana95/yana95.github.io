@@ -6,7 +6,7 @@ module.exports = {
 
     context: path.resolve(__dirname, 'src'),
 
-    entry: './App.jsx',
+    entry: './index.jsx',
 
     output: {
         filename: "[name].js",

@@ -2,11 +2,19 @@ import React from 'react';
 import { render } from 'react-dom';
 import styles from './header.scss';
 import { connect } from 'react-redux';
-import {filterTwitts} from './../actions';
+import {changeFilter, filterItems} from './../../../actions';
+
+const mapStateToProps = (state) => {
+    if(state.filter !== 'all'){
+        return {filter: state.filter}
+    } else {
+        return {filter: ''}
+    }
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        filterTwitts: (query) => dispatch(filterTwitts(query))
+        changeFilter: (query) => dispatch(changeFilter(query)),
     }
 };
 
@@ -15,12 +23,12 @@ class Header extends React.Component {
         this.props.history.push('/create');
     }
     showAll(){
-        this.props.filterTwitts('all');
+        this.props.changeFilter('all');
         this.props.history.push('/filter/all');
     }
+
     authorFilter(e){
-        console.log(this.props);
-        this.props.filterTwitts(e.target.value);
+        this.props.changeFilter(e.target.value);
         this.props.history.push(`/filter/${e.target.value}`);
     }
     render(){
@@ -35,7 +43,7 @@ class Header extends React.Component {
                         </li>
                         <li>
                             <span>show post by</span>
-                            <input type="text" onChange={(e) => this.authorFilter(e)} onBlur={(e)=>{e.target.value =''}}/>
+                            <input type="text" value={this.props.filter} onChange={(e) => this.authorFilter(e)} onBlur={(e)=>{e.target.value =''}}/>
                         </li>
                     </ul>
                 </div>
@@ -44,4 +52,4 @@ class Header extends React.Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

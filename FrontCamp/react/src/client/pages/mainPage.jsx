@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './header/header';
-import TwittsList from './twittsList/twittsList';
+import Header from '../components/header/header';
+import TwittsList from '../components/twittsList/twittsList';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const MainPage = (props) => (
     <div>
-        <Header {...props} />
+        <Header history={props.history} />
         <TwittsList {...props}/>
     </div>
 );

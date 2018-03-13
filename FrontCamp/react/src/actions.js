@@ -1,10 +1,10 @@
 import axios from 'axios';
-export const FILTER_TWITTS = 'FILTER_TWITTS';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const GET_TWITTS = 'GET_TWITTS';
 
-export function filterTwitts(query) {
+export function changeFilter(query) {
     return {
-        type: FILTER_TWITTS,
+        type: CHANGE_FILTER,
         query,
     }
 }

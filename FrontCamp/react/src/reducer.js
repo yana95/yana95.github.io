@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import {
-    FILTER_TWITTS,
+    CHANGE_FILTER,
     GET_TWITTS} from './actions';
 
 
 function twitts(state = [], action) {
     switch (action.type) {
         case GET_TWITTS:
-            return action.twitts
+            return action.twitts;
         default:
             return state
     }
@@ -15,7 +15,7 @@ function twitts(state = [], action) {
 
 function filter(state = 'all', action) {
     switch (action.type) {
-        case FILTER_TWITTS:
+        case CHANGE_FILTER:
             return action.query;
         default:
             return state

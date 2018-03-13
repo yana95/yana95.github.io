@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './header/header';
-import TwittsList from './twittsList/twittsList';
-import AddNewTwittForm from './addNewTwitForm/addNewTwitForm';
+import Header from '../components/header/header';
+import TwittsList from '../components/twittsList/twittsList';
+import AddNewTwittForm from '../components/addNewTwitForm/addNewTwitForm';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const AddNewTwittPage = (props) => (
     <div>
-        <Header {...props} />
+        <Header history={props.history} />
         <AddNewTwittForm {...props}/>
         <TwittsList {...props}/>
     </div>

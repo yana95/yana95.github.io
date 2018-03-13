@@ -6,10 +6,10 @@ import { Provider } from 'react-redux';
 import reducer from './reducer';
 import thunkMiddleware from 'redux-thunk';
 
-import App from './app/App';
-import MainPage from './mainPage';
-import AddNewTwittPage from './addNewTwittPage';
-import FilterPage from './filterPage';
+import App from './client/components/app/App';
+import MainPage from './client/pages/mainPage';
+import AddNewTwittPage from './client/pages/addNewTwittPage';
+import FilterPage from './client/pages/filterPage';
 
 const store = createStore(
     reducer,

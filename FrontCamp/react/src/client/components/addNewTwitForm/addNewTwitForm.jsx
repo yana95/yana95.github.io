@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import styles from './addNewTwitForm.scss';
 import date from 'date-and-time';
-import {fetchAddTwitt} from './../actions';
+import {fetchAddTwitt} from './../../../actions';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {

@@ -12,7 +12,9 @@ module.exports = {
         filename: "[name].js",
         path:  path.resolve(__dirname, 'built'),
     },
-
+    devServer: {
+        historyApiFallback: true
+    },
     resolve: {
         extensions: ['.js','.jsx']
     },

@@ -1,0 +1,140 @@
+body{
+    margin: 0;
+    background: #e6e6e6;
+    font-family: Arial;
+}
+.container{
+    width: 600px;
+    margin: 0 auto;
+}
+.title{
+    background: #55c0d2;
+    padding: 20px 0;
+    color: #feffff;
+}
+h1{
+    font-size: 50px;
+    display: inline-block;
+    margin: 0;
+}
+h2{
+    font-size: 20px;
+    margin: 0;
+    padding: 10px 0;
+}
+.header{
+    background-color: #fefefe;
+    font-size: 0;
+}
+.header p:first-child::after{
+    content: '';
+    display: block;
+    width: 1px;
+    height: 25px;
+    background: #cacaca;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.header p{
+    position: relative;
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 0;
+    color: #484b50;
+}
+.controls{
+    float: right;
+}
+.controls form{
+    margin-bottom: 10px;
+}
+.day-filter{
+    background: white;
+    border: none;
+    width: 50px;
+    outline: none;
+    color: #2B2922;
+    padding: 3px 5px;
+}
+.sort-title{
+    color: #feffff;
+}
+.list{
+    width: 50%;
+    float: left;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+.list li{
+    list-style: none;
+    background: #ffffff;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+}
+.list li button{
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    background: none;
+    cursor: pointer;
+    border: none;
+}
+.list .todo{
+    color: green;
+}
+.list .done{
+    color: red;
+}
+.list a{
+    color: #2e2e2e;
+    text-decoration: none;
+}
+.list span{
+    display: block;
+    color: #7f7f7f;
+    font-size: 12px;
+    margin-top: 10px;
+}
+.info{
+    width: 90%;
+}
+.clearfix::after{
+    clear: both;
+    content: '';
+    display: table;
+}
+.action{
+    text-decoration: none;
+    font-weight: bold;
+    color: #1C7789;
+}
+.task-form{
+    padding: 20px 0;
+    display: flex;
+}
+.task-form textarea{
+    padding: 5px;
+    width: 300px;
+}
+.task-form ul{
+    padding: 0 0 0 20px;
+}
+.task-form li{
+    list-style: none;
+    font-size: 14px;
+    color: #d41231;
+    padding: 5px 0;
+}
+.submit{
+    float: right;
+    padding: 5px 10px;
+    background: #5CAA6D;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

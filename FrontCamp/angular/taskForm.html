@@ -1,0 +1,11 @@
+<form name="taskForm" class="task-form">
+    <textarea ng-model="$ctrl.task.title" value="$ctrl.task.title" name="todoTitle" required ng-minlength="20" placeholder="Enter task title" rows="3"></textarea>
+    <ul>
+        <li>* field is required</li>
+        <li>* min length of field is 20 symbols</li>
+    </ul>
+</form>
+<div>
+    <a href="#/todos" class="action">Back</a>
+    <input type="button" class="submit" ng-click="$ctrl.saveTask($ctr.task)" ng-show="taskForm.todoTitle.$valid" value="Submit"/>
+</div>

@@ -1,0 +1,18 @@
+<form>
+    <span>Show task with age:</span>
+    <input type="number" ng-model="old" />
+    <span>days</span>
+</form>
+<ul class="todo list" ng-repeat="task in todo | filter: oldFilter()">
+    <li>
+        <a href="#/todos/edit" ng-click="setEditId(task)">{{task.title}}</a>
+        <button ng-click="changeStatus(task)"><i class="fas fa-check-circle"></i></button>
+    </li>
+</ul>
+<ul class="done list" ng-repeat="task in ready">
+    <li>
+        <a href="#/todos/edit" ng-click="setEditId(task)">{{task.title}}</a>
+        <button ng-click="changeStatus(task)"><i class="fas fas fa-ban"></i></button>
+    </li>
+</ul>
+<a href="#/todos/add" >Add new</a>

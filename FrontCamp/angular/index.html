@@ -3,38 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-route.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
     <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
-<body ng-app="toDoApp">
-    <div ng-controller="toDoController" class="container">
-        <h3>Add new todo</h3>
-        <form class="add-new-form">
-            <input type="text" ng-model="newTaskName">
-            <button ng-click="addNewTask()">Add</button>
-        </form>
-        <form class="filter-form">
-            <span>Filter by:</span>
-            <ul>
-                <li><input type="number" ng-change="filterByOld" id="old" ng-model="old-filter"><span>day/s old</span></li>
-            </ul>
-        </form>
-        <ul class="todo list" ng-repeat="task in tasks | filter: {done:false}">
-            <li>
-                <span>{{task.title}}</span>
-                <button ng-click="changeStatus(task.id)"><i class="fas fa-check-circle"></i></button>
-                <button ng-click="delete(task.id)"><i class="fas fa-trash-alt"></i></button>
-            </li>
-        </ul>
-        <ul class="done list" ng-repeat="task in tasks | filter: {done:true}">
-            <li>
-                <span>{{task.title}}</span>
-                <button ng-click="changeStatus(task.id)"><i class="fas fas fa-ban"></i></button>
-                <button ng-click="delete(task.id)"><i class="fas fa-trash-alt"></i></button>
-            </li>
-        </ul>
+<body>
+    <div ng-app="toDoApp">
+        <div ng-view></div>
     </div>
     <script src="todo.js"></script>
 </body>

@@ -1,12 +1,38 @@
-const app = angular.module('toDoApp', []);
+const app = angular.module('toDoApp', ['ngRoute']);
+
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/todos', {
+            templateUrl: 'todos.html',
+            controller: 'todosController'
+        })
+        .when('/todos/add', {
+            templateUrl: 'add.html',
+            controller: 'addController'
+        })
+        .when('/todos/edit', {
+            templateUrl: 'edit.html',
+            controller: 'editController'
+        })
+        .otherwise({
+            redirectTo: '/todos'
+        });
+});
 
 app.factory('todoFactory', () => {
+    let editTaskID;
     const todos = [
         {
             title: 'My mock task',
             done: false,
-            date: new Date(2013, 12, 1),
+            date: new Date(2018, 2, 20),
             id: 1,
+        },
+        {
+            title: 'My mock task 1',
+            done: false,
+            date: new Date(2018, 2, 10),
+            id: 3,
         },
         {
             title: 'My done task',
@@ -19,50 +45,78 @@ app.factory('todoFactory', () => {
         getTodos: () => {
             return todos;
         },
-        addTodo: (todo) => {
-            return todos.push(todo);
+        addTask: (task) => {
+            todos.push(task);
         },
-        changeStatus: (id) => {
-            todos.map((item,i) => {
-                if(item.id == id){
+        changeStatus: (task) => {
+            todos.map((item, i) => {
+                if(item.id === task.id){
                     todos[i].done = !todos[i].done;
-                    return;
                 }
-            })
-            console.log(todos);
+            });
         },
-        delete: (id) => {
-            todos.map((item,i) => {
-                if(item.id == id){
-                    todos.splice(i,1);
+        getEditId: () => {
+            return editTaskID;
+        },
+        setEditId: (id) => {
+            editTaskID = id;
+        },
+        editTask: (task) => {
+            for(let i=0; i<todos.length; i++){
+                if(todos[i].id === editTaskID){
+                    todos[i] = task;
                 }
-            })
+            }
         }
     }
 });
 
-app.controller('toDoController', ['$scope', 'todoFactory', ($scope, todoFactory) => {
-    $scope.tasks = todoFactory.getTodos();
-    $scope.addNewTask = () => {
-        const date = new Date();
-        const newTask = {
-            title: $scope.newTaskName,
-            done: false,
-            date: date,
-            id: date.getMilliseconds(),
-        };
-        $scope.tasks.push(newTask);
-        $scope.newTaskName = '';
-    };
-    $scope.changeStatus = (id) => {
-        $scope.tasks.map((item,i) => {
-            if(item.id == id){
-                $scope.tasks[i].done = !$scope.tasks[i].done;
-                return;
-            }
-        })
-    };
-    $scope.delete = (id) => {
-        todoFactory.delete(id);
+app.controller('todosController', ['$scope', 'todoFactory', function ($scope, todoFactory) {
+    $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
+    $scope.ready = todoFactory.getTodos().filter((item) => (item.done === true));
+    $scope.setEditId = (task) => {
+        todoFactory.setEditId(task.id);
+    }
+    $scope.changeStatus = (task) => {
+        todoFactory.changeStatus(task);
+        $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
+        $scope.ready = todoFactory.getTodos().filter((item) => (item.done === true));
     }
 }]);
+
+app.controller('addController', ['$scope', '$location', 'todoFactory', function ($scope, $location, todoFactory) {
+    const date = new Date();
+    $scope.task = {
+        title: '',
+        done: false,
+        date: date,
+        id: date.getMilliseconds(),
+    };
+    $scope.saveTask = () => {
+        todoFactory.addTask($scope.task);
+        $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
+        $scope.ready = todoFactory.getTodos().filter((item) => (item.done === true));
+        $location.path('#/todos');
+    };
+}]);
+
+app.controller('editController', ['$scope', '$location', 'todoFactory', function ($scope, $location, todoFactory) {
+    const editID = todoFactory.getEditId();
+    todoFactory.getTodos().map((item,i) => {
+        if(editID == item.id){
+            $scope.task = item;
+        }
+    });
+    $scope.saveTask = () => {
+        todoFactory.editTask($scope.task);
+        $location.path('#/todos/add');
+    }
+}]);
+
+app.component('taskForm', {
+    templateUrl: 'taskForm.html',
+    bindings: {
+        task: '=',
+        saveTask: '&',
+    }
+});

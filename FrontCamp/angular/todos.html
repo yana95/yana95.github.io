@@ -1,7 +1,12 @@
 <form>
     <span>Show task with age:</span>
-    <input type="number" ng-model="old" />
+    <input type="number" ng-model="age"  ng-change="ageFilter()"/>
     <span>days</span>
+</form>
+<form>
+    <span>Sort</span>
+    <input type="radio" id="first-letter" checked>
+    <input type="radio" id="date">
 </form>
 <ul class="todo list" ng-repeat="task in todo | filter: oldFilter()">
     <li>

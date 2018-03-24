@@ -23,13 +23,13 @@ app.factory('todoFactory', () => {
     let editTaskID;
     const todos = [
         {
-            title: 'My mock task',
+            title: '20.03.2018',
             done: false,
             date: new Date(2018, 2, 20),
             id: 1,
         },
         {
-            title: 'My mock task 1',
+            title: '10.03.2018',
             done: false,
             date: new Date(2018, 2, 10),
             id: 3,
@@ -81,6 +81,17 @@ app.controller('todosController', ['$scope', 'todoFactory', function ($scope, to
         todoFactory.changeStatus(task);
         $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
         $scope.ready = todoFactory.getTodos().filter((item) => (item.done === true));
+    }
+    $scope.ageFilter = () => {
+        $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
+        if($scope.age){
+            const now = new Date();
+            $scope.todo = $scope.todo.filter((item) => {
+                const timeDiff = Math.abs(now.getTime() - item.date.getTime());
+                const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                return diffDays === $scope.age;
+            })
+        }
     }
 }]);
 

@@ -23,23 +23,11 @@ app.factory('todoFactory', () => {
     let editTaskID;
     const todos = [
         {
-            title: 'A task',
-            done: false,
+            title: 'Article 1',
+            content: 'Protests after Russian shopping mall fire leaves 41 children dead',
             date: new Date(2018, 2, 20),
             id: 1,
         },
-        {
-            title: 'B task',
-            done: false,
-            date: new Date(2018, 2, 10),
-            id: 3,
-        },
-        {
-            title: 'C task',
-            done: true,
-            date: new Date(2017, 6, 4),
-            id: 2,
-        }
     ];
     return {
         getTodos: () => {
@@ -47,13 +35,6 @@ app.factory('todoFactory', () => {
         },
         addTask: (task) => {
             todos.push(task);
-        },
-        changeStatus: (task) => {
-            todos.map((item, i) => {
-                if(item.id === task.id){
-                    todos[i].done = !todos[i].done;
-                }
-            });
         },
         getEditId: () => {
             return editTaskID;
@@ -68,65 +49,19 @@ app.factory('todoFactory', () => {
                 }
             }
         },
-        getLetterSortItems: () => {
-            const todo =  todos.filter((item) => (item.done === false));
-            const compare = (a, b) => {
-                if ( a.title < b.title) {
-                    return -1;
-                }
-                if (a.title > b.title) {
-                    return 1;
-                }
-                return 0;
-            };
-            return todo.sort(compare);
-        },
-        getDateSortItems: () => {
-            const todo =  todos.filter((item) => (item.done === false));
-            const compare = (a, b) => {
-                if ( a.date < b.date) {
-                    return -1;
-                }
-                if (a.date > b.date) {
-                    return 1;
-                }
-                return 0;
-            };
-            return todo.sort(compare);
-        }
     }
 });
 
-app.controller('todosController', ['$scope', 'todoFactory', function ($scope, todoFactory) {
+app.controller('todosController', ['$scope', '$location', 'todoFactory', function ($scope, $location, todoFactory) {
     $scope.setEditId = (task) => {
         todoFactory.setEditId(task.id);
+        $location.path('/todos/edit');
     }
-    $scope.changeStatus = (task) => {
-        todoFactory.changeStatus(task);
-        $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
-        $scope.ready = todoFactory.getTodos().filter((item) => (item.done === true));
+    $scope.onAddClick = () => {
+        $location.path('/todos/add');
     }
-    $scope.ageFilter = () => {
-        $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
-        if($scope.age){
-            const now = new Date();
-            $scope.todo = $scope.todo.filter((item) => {
-                const timeDiff = Math.abs(now.getTime() - item.date.getTime());
-                const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                return diffDays === $scope.age;
-            })
-        }
-    }
-    $scope.sort = () => {
-        if($scope.sortType === 'letter'){
-            $scope.todo = todoFactory.getLetterSortItems();
-        } else {
-            $scope.todo = todoFactory.getDateSortItems();
-        }
-    }
-    $scope.sortType = 'letter';
-    $scope.sort();
-    $scope.ready = todoFactory.getTodos().filter((item) => (item.done === true));
+    $scope.todo = todoFactory.getTodos();
+    console.log($scope.todo);
 }]);
 
 app.controller('addController', ['$scope', '$location', 'todoFactory', function ($scope, $location, todoFactory) {
@@ -137,11 +72,14 @@ app.controller('addController', ['$scope', '$location', 'todoFactory', function 
         date: date,
         id: date.getMilliseconds(),
     };
+    $scope.backClick = () => {
+        $location.path('/todos');
+    };
     $scope.saveTask = () => {
         todoFactory.addTask($scope.task);
         $scope.todo = todoFactory.getTodos().filter((item) => (item.done === false));
         $scope.ready = todoFactory.getTodos().filter((item) => (item.done === true));
-        $location.path('#/todos');
+        $location.path('/todos');
     };
 }]);
 
@@ -152,9 +90,12 @@ app.controller('editController', ['$scope', '$location', 'todoFactory', function
             $scope.task = item;
         }
     });
+    $scope.backClick = () => {
+        $location.path('/todos');
+    };
     $scope.saveTask = () => {
         todoFactory.editTask($scope.task);
-        $location.path('#/todos/add');
+        $location.path('/todos');
     }
 }]);
 
@@ -163,5 +104,6 @@ app.component('taskForm', {
     bindings: {
         task: '=',
         saveTask: '&',
+        backClick: '&',
     }
 });

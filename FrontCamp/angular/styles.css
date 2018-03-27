@@ -26,16 +26,6 @@ h2{
     background-color: #fefefe;
     font-size: 0;
 }
-.header p:first-child::after{
-    content: '';
-    display: block;
-    width: 1px;
-    height: 25px;
-    background: #cacaca;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
 .header p{
     position: relative;
     width: 50%;
@@ -45,26 +35,7 @@ h2{
     margin: 10px 0;
     color: #484b50;
 }
-.controls{
-    float: right;
-}
-.controls form{
-    margin-bottom: 10px;
-}
-.day-filter{
-    background: white;
-    border: none;
-    width: 50px;
-    outline: none;
-    color: #2B2922;
-    padding: 3px 5px;
-}
-.sort-title{
-    color: #feffff;
-}
 .list{
-    width: 50%;
-    float: left;
     margin-top: 20px;
     box-sizing: border-box;
     padding: 0 10px;
@@ -84,12 +55,7 @@ h2{
     cursor: pointer;
     border: none;
 }
-.list .todo{
-    color: green;
-}
-.list .done{
-    color: red;
-}
+
 .list a{
     color: #2e2e2e;
     text-decoration: none;

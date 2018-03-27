@@ -1,52 +1,19 @@
 <div class="title">
     <div class="container">
-        <h1>ToDo list</h1>
-        <div class="controls">
-            <form>
-                <span>Show task with age</span>
-                <input type="number" ng-model="age" class="day-filter" ng-change="ageFilter()"/>
-                <span>days</span>
-            </form>
-            <form>
-                <span>Sort</span>
-                <span>
-                    <input type="radio" name="sort" value='letter' ng-model="sortType" ng-change="sort()" >
-                <label class="sort-title">by name</label>
-                </span>
-                <span>
-                    <input type="radio" name="sort" value='date' ng-model="sortType" ng-change="sort()">
-                    <label class="sort-title">by date</label>
-                </span>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="header">
-    <div class="container">
-        <p>In progress</p>
-        <p>Done</p>
+        <h1>Articles</h1>
     </div>
 </div>
 <div class="container clearfix">
     <ul class="list" >
-        <li ng-repeat="task in todo | filter: oldFilter()">
+        <li ng-repeat="task in todo">
             <div class="info">
-                <a href="#/todos/edit" ng-click="setEditId(task)">{{task.title}}</a>
+                <span ng-click="setEditId(task)">{{task.title}}</span>
                 <span class="date">{{task.date | date:'yyyy-MM-dd'}}</span>
             </div>
-            <button class="todo" ng-click="changeStatus(task)"><i class="fas fa-check-circle"></i></button>
         </li>
     </ul>
-    <ul class="list">
-        <li  ng-repeat="task in ready">
-            <div class="info">
-                <a href="#/todos/edit" ng-click="setEditId(task)">{{task.title}}</a>
-                <span class="date">{{task.date | date:'yyyy-MM-dd'}}</span>
-            </div>
-            <button class="done" ng-click="changeStatus(task)"><i class="fas fas fa-ban"></i></button>
-        </li>
     </ul>
 </div>
 <div class="container">
-    <a href="#/todos/add" class="action">Add new</a>
+    <span ng-click="onAddClick()" class="action">Add new</span>
 </div>

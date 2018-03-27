@@ -6,6 +6,6 @@
     </ul>
 </form>
 <div>
-    <a href="#/todos" class="action">Back</a>
+    <span ng-click="$ctrl.backClick()" class="action">Back</span>
     <input type="button" class="submit" ng-click="$ctrl.saveTask($ctr.task)" ng-show="taskForm.todoTitle.$valid" value="Submit"/>
 </div>

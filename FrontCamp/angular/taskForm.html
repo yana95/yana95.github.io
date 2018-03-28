@@ -1,11 +1,19 @@
 <form name="taskForm" class="task-form">
-    <textarea ng-model="$ctrl.task.title" value="$ctrl.task.title" name="todoTitle" required ng-minlength="20" placeholder="Enter task title" rows="3"></textarea>
-    <ul>
-        <li>* field is required</li>
-        <li>* min length of field is 20 symbols</li>
-    </ul>
+    <div>
+        <input ng-model="$ctrl.task.title" ng-value="$ctrl.task.title" name="todoTitle" required control-name-length placeholder="Enter title" ></input>
+        <ul>
+            <li>* field is required</li>
+            <li>* min length of field is 20 symbols</li>
+        </ul>
+    </div>
+    <div>
+        <textarea ng-model="$ctrl.task.content" value="$ctrl.task.content" name="todoContent" required  placeholder="Enter content" rows="5"></textarea>
+        <ul>
+            <li>* field is required</li>
+        </ul>
+    </div>
 </form>
 <div>
     <span ng-click="$ctrl.backClick()" class="action">Back</span>
-    <input type="button" class="submit" ng-click="$ctrl.saveTask($ctr.task)" ng-show="taskForm.todoTitle.$valid" value="Submit"/>
+    <input type="button" class="submit" ng-click="$ctrl.saveTask($ctr.task)" ng-show="taskForm.todoTitle.$valid && taskForm.todoTitle.$dirty && taskForm.todoContent.$valid" value="Submit"/>
 </div>

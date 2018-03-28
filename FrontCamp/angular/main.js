@@ -54,14 +54,14 @@ app.factory('todoFactory', () => {
 
 app.controller('todosController', ['$scope', '$location', 'todoFactory', function ($scope, $location, todoFactory) {
     $scope.setEditId = (task) => {
+        console.log(task);
         todoFactory.setEditId(task.id);
         $location.path('/todos/edit');
-    }
+    };
     $scope.onAddClick = () => {
         $location.path('/todos/add');
-    }
+    };
     $scope.todo = todoFactory.getTodos();
-    console.log($scope.todo);
 }]);
 
 app.controller('addController', ['$scope', '$location', 'todoFactory', function ($scope, $location, todoFactory) {
@@ -90,6 +90,7 @@ app.controller('editController', ['$scope', '$location', 'todoFactory', function
             $scope.task = item;
         }
     });
+    console.log($scope.task);
     $scope.backClick = () => {
         $location.path('/todos');
     };
@@ -106,4 +107,28 @@ app.component('taskForm', {
         saveTask: '&',
         backClick: '&',
     }
+});
+
+app.component('list', {
+    templateUrl: 'list.html',
+    bindings: {
+        tasks: '=',
+        edit: '&',
+    }
+});
+
+app.directive('controlNameLength', function() {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ctrl) {
+            function customValidator(ngModelValue) {
+                ctrl.$setValidity('lengthValidator', ngModelValue.length >= 20);
+                return ngModelValue;
+            }
+
+            ctrl.$parsers.push(customValidator);
+        }
+
+    };
 });

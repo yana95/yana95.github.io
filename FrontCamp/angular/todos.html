@@ -4,15 +4,7 @@
     </div>
 </div>
 <div class="container clearfix">
-    <ul class="list" >
-        <li ng-repeat="task in todo">
-            <div class="info">
-                <span ng-click="setEditId(task)">{{task.title}}</span>
-                <span class="date">{{task.date | date:'yyyy-MM-dd'}}</span>
-            </div>
-        </li>
-    </ul>
-    </ul>
+    <list tasks="todo" edit="setEditId(task)"></list>
 </div>
 <div class="container">
     <span ng-click="onAddClick()" class="action">Add new</span>

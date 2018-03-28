@@ -81,11 +81,14 @@ h2{
 }
 .task-form{
     padding: 20px 0;
-    display: flex;
 }
-.task-form textarea{
+.task-form input[name='todoTitle'], .task-form textarea{
     padding: 5px;
     width: 300px;
+}
+.task-form div{
+    display: flex;
+    align-items: center;
 }
 .task-form ul{
     padding: 0 0 0 20px;

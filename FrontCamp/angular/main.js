@@ -53,6 +53,7 @@ app.factory('todoFactory', () => {
 });
 
 app.controller('todosController', ['$scope', '$location', 'todoFactory', function ($scope, $location, todoFactory) {
+    $scope.label = 'Add an article';
     $scope.setEditId = (task) => {
         console.log(task);
         todoFactory.setEditId(task.id);
@@ -116,6 +117,15 @@ app.component('list', {
         edit: '&',
     }
 });
+
+app.component('addBtn', {
+    templateUrl: 'btn.html',
+    bindings: {
+        click: '&',
+        label: '=',
+    }
+});
+
 
 app.directive('controlNameLength', function() {
     return {

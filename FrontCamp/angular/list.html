@@ -1,0 +1,9 @@
+<p>{{$ctrl.tasks.length}} article/s</p>
+<ul class="list" name="list">
+    <li ng-repeat="task in $ctrl.tasks">
+        <div class="info">
+            <span ng-click="$ctrl.edit({task:task})">{{task.title}}</span>
+            <span class="date">{{task.date | date:'yyyy-MM-dd'}}</span>
+        </div>
+    </li>
+</ul>

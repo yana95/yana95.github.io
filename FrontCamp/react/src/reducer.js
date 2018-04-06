@@ -4,7 +4,7 @@ import {
     GET_TWITTS} from './actions';
 
 
-function twitts(state = [], action) {
+export function twitts(state = [], action) {
     switch (action.type) {
         case GET_TWITTS:
             return action.twitts;
@@ -13,7 +13,7 @@ function twitts(state = [], action) {
     }
 }
 
-function filter(state = 'all', action) {
+export function filter(state = 'all', action) {
     switch (action.type) {
         case CHANGE_FILTER:
             return action.query;

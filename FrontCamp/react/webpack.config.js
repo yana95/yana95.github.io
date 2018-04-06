@@ -34,10 +34,6 @@ module.exports = {
             exclude: /node_modules/,
             use: {
                 loader: 'babel-loader',
-                options: {
-                    presets: ['es2015','babel-preset-react'],
-                    plugins: [ 'react-hot-loader/babel']
-                }
             },
         },{
             test: /\.css$/,

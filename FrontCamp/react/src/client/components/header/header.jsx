@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-class Header extends React.Component {
+export  class Header extends React.Component {
     transit() {
         this.props.history.push('/create');
     }

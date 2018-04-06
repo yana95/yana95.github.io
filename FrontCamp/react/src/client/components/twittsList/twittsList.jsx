@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-class TwittsList extends React.Component {
+export class TwittsList extends React.Component {
     deleteTwitt(id){
         this.props.fetchDeleteTwitt(id);
     }
